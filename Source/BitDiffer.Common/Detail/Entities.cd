@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Segoe UI" Size="9" />
+  <Class Name="BitDiffer.Common.Model.AssemblyDetail" Collapsed="true">
+    <Position X="27.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\AssemblyDetail.cs</FileName>
+      <HashCode>ABAAAAAACAAAAAANAAIAAAAAAAAAAAAAACAAAAAAABA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BitDiffer.Common.Model.AttributeDetail" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\AttributeDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.AttributesDetail" Collapsed="true">
+    <Position X="30" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\AttributesDetail.cs</FileName>
+      <HashCode>AAAAAAAQAAAABAAAAAAAAQAAAAAAACAAAAAAABAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.ClassDetail" Collapsed="true">
+    <Position X="14.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\ClassDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.EntityDetail" Collapsed="true">
+    <Position X="15.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\EntityDetail.cs</FileName>
+      <HashCode>AAAAAAAACAAAIAAgAAAAAAAAAAAAAAAAAAABAAAAAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.EnumDetail" Collapsed="true">
+    <Position X="12" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\EnumDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.EnumItemDetail" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\EnumItemDetail.cs</FileName>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.EventDetail" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\EventDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.FieldDetail" Collapsed="true">
+    <Position X="18.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\FieldDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.InterfaceDetail" Collapsed="true">
+    <Position X="16.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\InterfaceDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.MemberDetail" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\MemberDetail.cs</FileName>
+      <HashCode>AEAAAAAAQAEEBBAMAAAAAAAAgQCAgAAAAAIAAIIAAAI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BitDiffer.Common.Model.MethodDetail" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\MethodDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAACIAAAAAAAAgAAAAAAAAAAAAAAAEAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.NamespaceDetail" Collapsed="true">
+    <Position X="32.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\NamespaceDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.OperatorDetail" Collapsed="true">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\OperatorDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.ParentDetail" Collapsed="true">
+    <Position X="32.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\ParentDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.PropertyDetail" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\PropertyDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.ReferenceDetail" Collapsed="true">
+    <Position X="21" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\ReferenceDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAMAAAAEAACgACAAAAAAAAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.ReferencesDetail" Collapsed="true">
+    <Position X="34.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\ReferencesDetail.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAQAAAAAAACAAAAAAABAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.ResourceDetail" Collapsed="true">
+    <Position X="25.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\ResourceDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAMAAAAAAAAgACAAAAAEQAAAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.ResourcesDetail" Collapsed="true">
+    <Position X="36.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\ResourcesDetail.cs</FileName>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAAQAAAAAAACAAAAAAABAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.RootDetail" Collapsed="true">
+    <Position X="18.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\RootDetail.cs</FileName>
+      <HashCode>EJGgAAAQCAFABAYNgGAQQQEAoRKAALEAAAJAQBwAAio=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BitDiffer.Common.Model.TraitDetail" Collapsed="true">
+    <Position X="23.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\TraitDetail.cs</FileName>
+      <HashCode>ABAAAAAQAAEAAAAMAAAQAAAAgAIAAAAAAAAgAACAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BitDiffer.Common.Model.TypeDetail" Collapsed="true">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Detail\TypeDetail.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

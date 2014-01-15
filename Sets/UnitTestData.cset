@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ComparisonSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mode>CompareFiles</Mode>
+  <Items>
+    <Item>D:\Projects\svn\BitDiffer\Source\BitDiffer.Tests.bin\1\BitDiffer.Tests.Subject.dll</Item>
+    <Item>D:\Projects\svn\BitDiffer\Source\BitDiffer.Tests.bin\2\BitDiffer.Tests.Subject.dll</Item>
+  </Items>
+  <Config IsolationLevel="AutoDetect" UseReflectionOnlyContext="true" TryResolveGACFirst="false" Multithread="true" />
+  <Filter PublicTypesOnly="false" ChangedItemsOnly="false" IgnoreAssemblyAttributeChanges="false" CompareMethodImplementations="true" />
+</ComparisonSet>

@@ -1,0 +1,1 @@
+This is resource B - totally different than resource A!
