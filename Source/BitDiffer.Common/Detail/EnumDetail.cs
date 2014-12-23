@@ -29,7 +29,7 @@ namespace BitDiffer.Common.Model
 						this,
 						name,
 						Convert.ToInt64(
-							type.GetField(name)
+							type.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
 								.GetRawConstantValue()),
 						_visibility));
 			}
