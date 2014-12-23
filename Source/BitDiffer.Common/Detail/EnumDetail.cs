@@ -24,7 +24,14 @@ namespace BitDiffer.Common.Model
 
 			foreach (string name in Enum.GetNames(type))
 			{
-				_children.Add(new EnumItemDetail(this, name, Convert.ToInt64(type.GetField(name).GetRawConstantValue()), _visibility));
+				_children.Add(
+					new EnumItemDetail(
+						this,
+						name,
+						Convert.ToInt64(
+							type.GetField(name)
+								.GetRawConstantValue()),
+						_visibility));
 			}
 
 			CodeStringBuilder csb = new CodeStringBuilder();
