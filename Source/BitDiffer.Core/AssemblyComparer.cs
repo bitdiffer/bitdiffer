@@ -6,7 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.IO;
 using System.Threading;
-
+using BitDiffer.Common.Exceptions;
 using BitDiffer.Common.Model;
 using BitDiffer.Common.Utility;
 using BitDiffer.Common.Misc;
@@ -155,7 +155,7 @@ namespace BitDiffer.Core
 
             if (filter.ChangedItemsOnly)
             {
-                var removeList = ac.Groups.ToList().Where(g => g.Change == ChangeType.None);
+                var removeList = ac.Groups.ToList().Where(g => g.Change == ChangeType.None && !g.HasErrors);
                 removeList.ToList().ForEach(i => ac.Groups.Remove(i));
             }
 
@@ -266,40 +266,11 @@ namespace BitDiffer.Core
             catch (Exception ex)
             {
                 Log.Error("Unable to load assembly : {0}", act.FileName);
-                var sb = new StringBuilder();
-
-                while (ex != null)
-                {
-                    var msg = ex.Message;
-
-                    if (ex is System.Reflection.ReflectionTypeLoadException)
-                    {
-                        var typeLoadException = ex as ReflectionTypeLoadException;
-                        var loaderExceptions = typeLoadException.LoaderExceptions;
-                        foreach (Exception e in typeLoadException.LoaderExceptions)
-                        {
-                            msg += "\n" + e.Message;
-                            if (e is FileNotFoundException)
-                            {
-                                msg += ("\nFusion Log: " + (e as FileNotFoundException).FusionLog);
-                            }
-                        }
-                    }
-
-                    Log.Error(ex.Message);
-
-                    if (sb.Length > 0)
-                    {
-                        sb.Append(" -> ");
-                    }
-
-                    sb.Append(msg);
-                    ex = ex.InnerException;
-                }
-
                 act.Group.HasErrors = true;
-                act.Group.ErrorDetail = sb.ToString();
+                act.Group.ErrorDetail = ex.GetNestedExceptionMessage();
+                Log.Error(act.Group.ErrorDetail);
             }
         }
+
     }
 }

@@ -91,6 +91,7 @@
     <Compile Include="Detail\TraitDetail.cs" />
     <Compile Include="Detail\TypeDetail.cs" />
     <Compile Include="Exceptions\ArgumentParserException.cs" />
+    <Compile Include="Exceptions\ExceptionExtension.cs" />
     <Compile Include="Exceptions\WeakerMatchException.cs" />
     <Compile Include="Interfaces\IHandleProgress.cs" />
     <Compile Include="Interfaces\ICanNavigate.cs" />

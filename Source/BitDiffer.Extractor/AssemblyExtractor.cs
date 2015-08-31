@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 using System.Diagnostics;
-
+using BitDiffer.Common.Exceptions;
 using BitDiffer.Common.Model;
 using BitDiffer.Common.Utility;
 using BitDiffer.Common.Misc;
@@ -51,29 +51,10 @@ namespace BitDiffer.Extractor
 		        return new AssemblyDetail(assembly);
 		    }
             catch (Exception ex)
-		    {
-
-                var msg = new StringBuilder();
-                var typeLoadException = ex as System.Reflection.ReflectionTypeLoadException;
-
-                if (typeLoadException == null)
-		        {
-		            msg.Append(ex.Message);
-		        }
-                else
-		        {
-                    foreach (Exception e in typeLoadException.LoaderExceptions)
-		            {
-		                msg.Append("\n" + e.Message);
-		                if (e is FileNotFoundException)
-		                {
-		                    msg.Append("\nFusion Log: " + (e as FileNotFoundException).FusionLog);
-		                }
-		            }
-		        }
-
-		        Log.Error(msg.ToString());
-                throw new Exception( msg.ToString(), ex );
+            {
+                var errMessage = ex.GetNestedExceptionMessage();
+                Log.Error(errMessage);
+                throw new Exception(errMessage);
 		    }
 			finally
 			{
