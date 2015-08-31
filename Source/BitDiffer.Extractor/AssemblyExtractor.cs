@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.IO;
@@ -34,21 +35,46 @@ namespace BitDiffer.Extractor
 
 			AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
 
-			try
-			{
-				if (config.UseReflectionOnlyContext)
-				{
-					Log.Info("Loading assembly {0} (ReflectionContext)", assemblyFile);
-					assembly = Assembly.ReflectionOnlyLoadFrom(assemblyFile);
-				}
-				else
-				{
-					Log.Info("Loading assembly {0}", assemblyFile);
-					assembly = Assembly.LoadFrom(assemblyFile);
-				}
+		    try
+		    {
+		        if (config.UseReflectionOnlyContext)
+		        {
+		            Log.Info("Loading assembly {0} (ReflectionContext)", assemblyFile);
+		            assembly = Assembly.ReflectionOnlyLoadFrom(assemblyFile);
+		        }
+		        else
+		        {
+		            Log.Info("Loading assembly {0}", assemblyFile);
+		            assembly = Assembly.LoadFrom(assemblyFile);
+		        }
 
-				return new AssemblyDetail(assembly);
-			}
+		        return new AssemblyDetail(assembly);
+		    }
+            catch (Exception ex)
+		    {
+
+                var msg = new StringBuilder();
+                var typeLoadException = ex as System.Reflection.ReflectionTypeLoadException;
+
+                if (typeLoadException == null)
+		        {
+		            msg.Append(ex.Message);
+		        }
+                else
+		        {
+                    foreach (Exception e in typeLoadException.LoaderExceptions)
+		            {
+		                msg.Append("\n" + e.Message);
+		                if (e is FileNotFoundException)
+		                {
+		                    msg.Append("\nFusion Log: " + (e as FileNotFoundException).FusionLog);
+		                }
+		            }
+		        }
+
+		        Log.Error(msg.ToString());
+                throw new Exception( msg.ToString(), ex );
+		    }
 			finally
 			{
 				AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve -= new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
