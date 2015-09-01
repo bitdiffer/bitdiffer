@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.IO;
 using System.Diagnostics;
-
+using BitDiffer.Common.Exceptions;
 using BitDiffer.Common.Model;
 using BitDiffer.Common.Utility;
 using BitDiffer.Common.Misc;
@@ -34,21 +35,27 @@ namespace BitDiffer.Extractor
 
 			AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
 
-			try
-			{
-				if (config.UseReflectionOnlyContext)
-				{
-					Log.Info("Loading assembly {0} (ReflectionContext)", assemblyFile);
-					assembly = Assembly.ReflectionOnlyLoadFrom(assemblyFile);
-				}
-				else
-				{
-					Log.Info("Loading assembly {0}", assemblyFile);
-					assembly = Assembly.LoadFrom(assemblyFile);
-				}
+		    try
+		    {
+		        if (config.UseReflectionOnlyContext)
+		        {
+		            Log.Info("Loading assembly {0} (ReflectionContext)", assemblyFile);
+		            assembly = Assembly.ReflectionOnlyLoadFrom(assemblyFile);
+		        }
+		        else
+		        {
+		            Log.Info("Loading assembly {0}", assemblyFile);
+		            assembly = Assembly.LoadFrom(assemblyFile);
+		        }
 
-				return new AssemblyDetail(assembly);
-			}
+		        return new AssemblyDetail(assembly);
+		    }
+            catch (Exception ex)
+            {
+                var errMessage = ex.GetNestedExceptionMessage();
+                Log.Error(errMessage);
+                throw new Exception(errMessage);
+		    }
 			finally
 			{
 				AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve -= new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);

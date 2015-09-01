@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.IO;
 using System.Threading;
-
+using BitDiffer.Common.Exceptions;
 using BitDiffer.Common.Model;
 using BitDiffer.Common.Utility;
 using BitDiffer.Common.Misc;
@@ -73,6 +76,8 @@ namespace BitDiffer.Core
 
             manager.AllExtractionsComplete();
 
+            FilterResultSet(ac, filter);
+
             return ac;
         }
 
@@ -136,7 +141,24 @@ namespace BitDiffer.Core
 
             manager.AllExtractionsComplete();
 
+            FilterResultSet(ac, filter);
+
             return ac;
+        }
+
+        private void FilterResultSet(AssemblyComparison ac, ComparisonFilter filter)
+        {
+            if (ac == null || filter == null)
+            {
+                return;
+            }
+
+            if (filter.ChangedItemsOnly)
+            {
+                var removeList = ac.Groups.ToList().Where(g => g.Change == ChangeType.None && !g.HasErrors);
+                removeList.ToList().ForEach(i => ac.Groups.Remove(i));
+            }
+
         }
 
         private AssemblyGroup DoCompareFiles(AssemblyManager manager, string[] assemblyFiles)
@@ -244,24 +266,11 @@ namespace BitDiffer.Core
             catch (Exception ex)
             {
                 Log.Error("Unable to load assembly : {0}", act.FileName);
-                StringBuilder sb = new StringBuilder();
-
-                while (ex != null)
-                {
-                    Log.Error(ex.Message);
-
-                    if (sb.Length > 0)
-                    {
-                        sb.Append(" -> ");
-                    }
-
-                    sb.Append(ex.Message);
-                    ex = ex.InnerException;
-                }
-
                 act.Group.HasErrors = true;
-                act.Group.ErrorDetail = sb.ToString();
+                act.Group.ErrorDetail = ex.GetNestedExceptionMessage();
+                Log.Error(act.Group.ErrorDetail);
             }
         }
+
     }
 }
