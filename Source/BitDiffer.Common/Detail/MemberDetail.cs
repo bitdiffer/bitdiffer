@@ -28,12 +28,20 @@ namespace BitDiffer.Common.Model
 		public MemberDetail(RootDetail parent, MemberInfo mi)
 			: base(parent, "")
 		{
-			IList<CustomAttributeData> cads = CustomAttributeData.GetCustomAttributes(mi);
+            // In some cases attributes do not resolve with .winmd files so this logs a warning but continues
+            try
+            {
+                IList<CustomAttributeData> cads = CustomAttributeData.GetCustomAttributes(mi);
 
-			foreach (CustomAttributeData cad in cads)
-			{
-				_children.Add(new AttributeDetail(this, cad));
-			}
+                foreach (CustomAttributeData cad in cads)
+                {
+                    _children.Add(new AttributeDetail(this, cad));
+                }
+            }
+            catch(TypeLoadException ex)
+            {
+                Log.Warn("Failed loading custom attribute data for type '{0}': {1}", parent.FullName, ex.Message);
+            }
 		}
 
 		public MemberDetail(RootDetail parent, string name)

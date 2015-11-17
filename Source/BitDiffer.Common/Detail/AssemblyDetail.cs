@@ -58,26 +58,34 @@ namespace BitDiffer.Common.Model
 
 			Type[] types = assembly.GetTypes();
 
-			foreach (Type type in types)
-			{
-				if (!type.IsNested)
-				{
-					NamespaceDetail ns = FindOrCreateNamespace(type.Namespace);
+            foreach (Type type in types)
+            {
+                try
+                {
+                    if (!type.IsNested)
+                    {
+                        NamespaceDetail ns = FindOrCreateNamespace(type.Namespace);
 
-					if (type.IsEnum)
-					{
-						ns.Children.Add(new EnumDetail(ns, type));
-					}
-					else if (type.IsInterface)
-					{
-						ns.Children.Add(new InterfaceDetail(ns, type));
-					}
-					else if (type.IsClass)
-					{
-						ns.Children.Add(new ClassDetail(ns, type));
-					}
-				}
-			}
+                        if (type.IsEnum)
+                        {
+                            ns.Children.Add(new EnumDetail(ns, type));
+                        }
+                        else if (type.IsInterface)
+                        {
+                            ns.Children.Add(new InterfaceDetail(ns, type));
+                        }
+                        else if (type.IsClass)
+                        {
+                            ns.Children.Add(new ClassDetail(ns, type));
+                        }
+                    }
+
+                }
+                catch (TypeLoadException tle)
+                {
+                    Log.Warn("Failed loading Type '{0}': {1}", type.FullName, tle.Message);
+                }
+            }
 		}
 
 		private NamespaceDetail FindOrCreateNamespace(string ns)
