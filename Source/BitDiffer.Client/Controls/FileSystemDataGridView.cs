@@ -92,7 +92,7 @@ namespace BitDiffer.Client.Controls
                 {
                     OpenFileDialog fd = new OpenFileDialog();
                     fd.CheckFileExists = true;
-                    fd.Filter = "Assembly Files (*.exe, *.dll)|*.exe;*.dll|All Files (*.*)|*.*";
+                    fd.Filter = "Assembly Files (*.exe, *.dll, *.winmd)|*.exe;*.dll;*.winmd|All Files (*.*)|*.*";
 
 					if (e.RowIndex == this.NewRowIndex)
 					{

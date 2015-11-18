@@ -10,6 +10,7 @@ using BitDiffer.Common.Model;
 using BitDiffer.Common.Utility;
 using BitDiffer.Common.Misc;
 using BitDiffer.Common.Configuration;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace BitDiffer.Extractor
 {
@@ -28,14 +29,17 @@ namespace BitDiffer.Extractor
 
 		public AssemblyDetail ExtractFrom(string assemblyFile, DiffConfig config)
 		{
+            
 			Assembly assembly;
 
 			_assemblyFile = assemblyFile;
 			_config = config;
 
-			AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
+            // Handle standard and .winmd resolve events
+			AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
+            WindowsRuntimeMetadata.ReflectionOnlyNamespaceResolve += WindowsRuntimeMetadata_ReflectionOnlyNamespaceResolve;
 
-		    try
+            try
 		    {
 		        if (config.UseReflectionOnlyContext)
 		        {
@@ -58,11 +62,56 @@ namespace BitDiffer.Extractor
 		    }
 			finally
 			{
-				AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve -= new ResolveEventHandler(CurrentDomain_ReflectionOnlyAssemblyResolve);
-			}
+				AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve -= CurrentDomain_ReflectionOnlyAssemblyResolve;
+                WindowsRuntimeMetadata.ReflectionOnlyNamespaceResolve -= WindowsRuntimeMetadata_ReflectionOnlyNamespaceResolve;
+            }
 		}
 
-		private Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
+        private void WindowsRuntimeMetadata_ReflectionOnlyNamespaceResolve(object sender, NamespaceResolveEventArgs e)
+        {
+            // Create a directory list of paths to use when resolving assemblies
+            List<string> dirs = new List<string>();
+
+            // Add the path to the current assembly as one possible location
+            dirs.Add(Path.GetDirectoryName(_assemblyFile));
+
+            // Add non-empty reference directories as well
+            if (_config.ReferenceDirectories != null)
+            {
+                string[] splitDirs = _config.ReferenceDirectories.Split(';');
+                foreach (var d in splitDirs)
+                    if (!string.IsNullOrEmpty(d))
+                        dirs.Add(d);
+            }
+
+            // Resolve the namespace using the directory list. Unfortunately the system root usually overrides the passed folder.
+            Log.Verbose("Resolving namespace '{0}' in assemblies located at '{1}'", e.NamespaceName, string.Join(";", dirs));
+            IEnumerable<string> foundAssemblies = WindowsRuntimeMetadata.ResolveNamespace(e.NamespaceName, dirs);
+
+            foreach (var assemblyName in foundAssemblies)
+                Log.Verbose(@"Found namespace '{0}' in assembly '{1}'", e.NamespaceName, assemblyName);
+
+            string path = foundAssemblies.FirstOrDefault();
+            if (path == null)
+                return;
+
+            // HACK: Because the system path will override any local paths during resolution, go ahead and add
+            // all .winmd files discovered.
+            foreach (var assemblyPath in dirs)
+            {
+                var localAssemblies = Directory.GetFiles(assemblyPath, "*.winmd");
+                foreach (var localAssembly in localAssemblies)
+                    if (localAssembly != e.RequestingAssembly.Location)
+                        e.ResolvedAssemblies.Add(Assembly.ReflectionOnlyLoadFrom(localAssembly));
+            }
+
+            // Finally add the path that was originally found in the earlier lookup.
+            var assembly = Assembly.ReflectionOnlyLoadFrom(path);
+            if (!e.ResolvedAssemblies.Contains(assembly))
+                e.ResolvedAssemblies.Add(assembly);
+        }
+
+        private Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
 		{
 			Assembly assembly = null;
 
@@ -190,7 +239,7 @@ namespace BitDiffer.Extractor
 				return Assembly.ReflectionOnlyLoadFrom(fileName);
 			}
 
-			return null;
+            return null;
 		}
 
 		public void AddTraceListener(TraceListener listener)
