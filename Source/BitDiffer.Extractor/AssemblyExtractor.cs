@@ -23,7 +23,7 @@ namespace BitDiffer.Extractor
 		{
 			if (AppDomain.CurrentDomain.FriendlyName.StartsWith(Constants.ExtractionDomainPrefix))
 			{
-				AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(domain_AssemblyResolve);
+				AppDomain.CurrentDomain.AssemblyResolve += domain_AssemblyResolve;
 			}
 		}
 
@@ -188,7 +188,17 @@ namespace BitDiffer.Extractor
 				}
 			}
 
-			return Assembly.Load(args.Name);
+      //If the Assembly we're trying to resolve cannot ever be resolved (because the Assembly in question is missing from GAC 
+      //and is not included locally, for example) Assembly.Load will cause a recursive loop resulting in a StackOverflowException.
+      //To avoid this we need to unregister this event handler from the AssemblyResolve event whilst we attempt to 
+      //load this assembly. 
+      //MSDN actually has an example of how we should not Assembly.Load inside this event.
+      //see "What the Event Handler Should Not Do" @ https://msdn.microsoft.com/en-us/library/ff527268%28v=vs.110%29.aspx
+      AppDomain.CurrentDomain.AssemblyResolve -= domain_AssemblyResolve;
+      var loadedAsm = Assembly.Load(args.Name);
+      AppDomain.CurrentDomain.AssemblyResolve += domain_AssemblyResolve;
+      return loadedAsm;
+
 		}
 
 		private Assembly LoadAssemblyFromGAC(string name)
