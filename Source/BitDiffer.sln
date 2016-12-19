@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26E0EEDE-0920-479D-B5A4-57B0AB9C5577}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aga.Controls", "Aga.Controls\Aga.Controls.csproj", "{E73BB233-D88B-44A7-A98F-D71EE158381D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitDiffer.Client", "BitDiffer.Client\BitDiffer.Client.csproj", "{F113EB58-59DE-4682-8489-1F5DE6864ACA}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "scripts", "..\Build\scripts\scripts.fsproj", "{99563A3A-E0D3-47D8-8C86-CCEBA16D5B59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,9 +87,16 @@ Global
 		{F113EB58-59DE-4682-8489-1F5DE6864ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F113EB58-59DE-4682-8489-1F5DE6864ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F113EB58-59DE-4682-8489-1F5DE6864ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99563A3A-E0D3-47D8-8C86-CCEBA16D5B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99563A3A-E0D3-47D8-8C86-CCEBA16D5B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99563A3A-E0D3-47D8-8C86-CCEBA16D5B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99563A3A-E0D3-47D8-8C86-CCEBA16D5B59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99563A3A-E0D3-47D8-8C86-CCEBA16D5B59} = {26E0EEDE-0920-479D-B5A4-57B0AB9C5577}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = BitDiffer.vsmdi
