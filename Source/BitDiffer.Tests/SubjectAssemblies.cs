@@ -1,18 +1,27 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 namespace BitDiffer.Tests
 {
 	internal static class Subjects
 	{
-		internal const string One = @"..\..\..\BitDiffer.Tests.bin\1\BitDiffer.Tests.Subject.dll";
-		internal const string Two = @"..\..\..\BitDiffer.Tests.bin\2\BitDiffer.Tests.Subject.dll";
+	    private static readonly string BasePath;
 
-		internal const string DirOne = @"..\..\..\BitDiffer.Tests.bin\1";
-		internal const string DirTwo = @"..\..\..\BitDiffer.Tests.bin\2\";
-		internal const string DirEmpty = @"..\..\..\BitDiffer.Tests.bin";
+	    static Subjects()
+	    {
+	        var directory = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+	        BasePath = Path.GetFullPath(directory.Name == "Release" || directory.Name == "Debug" 
+                ? "..\\..\\.." 
+                : "..\\..\\..\\..");
+	    }
 
-		internal const string NamespaceOne = "BitDiffer.Tests.Subject";
+	    internal static string DirEmpty => Path.Combine(BasePath, "BitDiffer.Tests.bin");
+	    internal static string DirOne => Path.Combine(DirEmpty, "1");
+        internal static string DirTwo => Path.Combine(DirEmpty, "2");
+
+        internal static string NamespaceOne => "BitDiffer.Tests.Subject";
+
+        internal static string One => Path.Combine(DirOne, "BitDiffer.Tests.Subject.dll");
+	    internal static string Two => Path.Combine(DirTwo, "BitDiffer.Tests.Subject.dll");
 	}
 }

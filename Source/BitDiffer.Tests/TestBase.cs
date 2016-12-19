@@ -39,7 +39,7 @@ namespace BitDiffer.Tests
 					{
 						if (!File.Exists(assemblyFile))
 						{
-							Assert.Inconclusive("Unable to locate subject assembly");
+							Assert.Inconclusive("Unable to locate subject assembly at " + assemblyFile);
 						}
 
 						AssemblyManager am = AssemblyManagerFactory.Create(config.IsolationLevel);

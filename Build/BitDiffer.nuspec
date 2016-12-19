@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BitDiffer</id>
+    <version>$version$</version>
+    <authors>grennis</authors>
+    <owners>grennis, forloop</owners>
+    <licenseUrl>https://github.com/grennis/bitdiffer/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/grennis/bitdiffer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A GUI and Command Line application to compare versions of .NET assemblies.</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>reflection assembly diff diffing</tags>
+  </metadata>
+  <files>
+		<file src="output\v4.6\Aga.Controls\Aga.Controls.dll" target="lib\net46"/>
+    <file src="output\v4.6\Aga.Controls\Aga.Controls.pdb" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Client\BitDiffer.Client.exe" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Client\BitDiffer.Client.exe.config" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Client\BitDiffer.Client.pdb" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Common\BitDiffer.Common.dll" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Common\BitDiffer.Common.pdb" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Console\BitDiffer.Console.exe" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Console\BitDiffer.Console.exe.config" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Console\BitDiffer.Console.pdb" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Core\BitDiffer.Core.dll" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Core\BitDiffer.Core.pdb" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Extractor\BitDiffer.Extractor.dll" target="lib\net46"/>
+    <file src="output\v4.6\BitDiffer.Extractor\BitDiffer.Extractor.pdb" target="lib\net46"/>
+	</files>
+</package>
