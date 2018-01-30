@@ -169,7 +169,7 @@ namespace BitDiffer.Core
             {
                 if (Path.IsPathRooted(assemblyFiles[i]))
                 {
-                    assemblyFilesResolved[i] = assemblyFiles[i];
+                    assemblyFilesResolved[i] = Path.GetFullPath(assemblyFiles[i]);
                 }
                 else
                 {
