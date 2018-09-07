@@ -8,7 +8,7 @@ namespace BitDiffer.Common.Misc
 	{
 		public const string ProductName = "BitDiffer";
 		public const string ProductSubTitle = "Assembly Comparison Tool";
-        public const string HelpUrl = "https://github.com/grennis/bitdiffer/wiki";
+        	public const string HelpUrl = "https://github.com/bitdiffer/bitdiffer/wiki";
 		public const string ExtractionDomainPrefix = "Temp App Domain";
 		public const string ComparisonEmailSubject = "BitDiffer Assembly Comparison Report";
 	}
