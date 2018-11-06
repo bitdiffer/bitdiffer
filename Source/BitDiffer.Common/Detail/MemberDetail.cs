@@ -73,7 +73,7 @@ namespace BitDiffer.Common.Model
 					check = check.Parent as MemberDetail;
 				}
 
-				return _visibility;
+				return vis;
 			}
 
 			set { _visibility = value; }
@@ -148,7 +148,7 @@ namespace BitDiffer.Common.Model
 
 			if (!filter.IncludePublic || !filter.IncludeProtected || !filter.IncludePrivate || !filter.IncludeInternal)
 			{
-				if (FilterMatches(filter, _visibility))
+				if (FilterMatches(filter, Visibility))
 				{
 					SetFilterStatus(FilterStatus.Include);
 				}
