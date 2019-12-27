@@ -58,7 +58,16 @@ namespace BitDiffer.Common.Model
 			{
 				_changeThisInstance = ChangeType.None;
 			}
-		}
+
+            if ((filter.IgnoreAssemblyFileVersionAttributeChanges)
+                && (this.Parent.GetType() == typeof(AttributesDetail))
+                && (this.Parent.Parent.GetType() == typeof(AssemblyDetail))
+                && (this.Name.Equals("System.Reflection.AssemblyFileVersionAttribute")))
+            {
+                _changeThisInstance = ChangeType.None;
+            }
+
+        }
 
 		protected override string SerializeGetElementName()
 		{

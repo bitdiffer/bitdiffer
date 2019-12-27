@@ -15,7 +15,8 @@ namespace BitDiffer.Common.Configuration
 		private bool _ignoreAssemblyAttributeChanges;
 		private bool _compareMethodImplementations = true;
 		private string _textFilter;
-		public static ComparisonFilter Default = new ComparisonFilter();
+        private bool _ignoreAssemblyFileVersionAttributeChanges = false;
+        public static ComparisonFilter Default = new ComparisonFilter();
 
 		[XmlAttribute("PublicTypesOnly")]
 		public bool PublicTypesOnly_Obsolete
@@ -88,5 +89,12 @@ namespace BitDiffer.Common.Configuration
 			get { return _textFilter; }
 			set { _textFilter = value; }
 		}
-	}
+
+        [XmlAttribute]
+        public bool IgnoreAssemblyFileVersionAttributeChanges
+        {
+            get { return _ignoreAssemblyFileVersionAttributeChanges; }
+            set { _ignoreAssemblyFileVersionAttributeChanges = value; }
+        }
+    }
 }

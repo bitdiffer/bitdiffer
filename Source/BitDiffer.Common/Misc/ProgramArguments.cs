@@ -148,6 +148,9 @@ namespace BitDiffer.Common.Misc
                 case "-refdirs":
                     _set.Config.ReferenceDirectories = args[++i];
                     break;
+                case "-nofileversion":
+                    _set.Filter.IgnoreAssemblyFileVersionAttributeChanges = true;
+                    break;
                 default:
 			        throw new ArgumentParserException("Unknown option {0}", args[i]);
 			}

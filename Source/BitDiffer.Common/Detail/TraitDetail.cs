@@ -51,6 +51,8 @@ namespace BitDiffer.Common.Model
 			ChangeType change = base.CompareInstance(previous, suppressBreakingChanges);
 
 			TraitDetail other = (TraitDetail)previous;
+            if (_value.Contains("Version=") && other._value.Contains("Version=") || (_name.Equals("Version") && other.Name.Equals("Version")))
+                return ChangeType.None;
 
 			if (string.Compare(_value, other._value) != 0)
 			{

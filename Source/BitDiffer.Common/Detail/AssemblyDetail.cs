@@ -27,9 +27,9 @@ namespace BitDiffer.Common.Model
 			_name = "";
 			_location = assembly.Location;
 
-			_children.Add(new TraitDetail(this, "FullName", assembly.FullName));
-			_children.Add(new TraitDetail(this, "Version", assembly.GetName().Version.ToString()));
-			_children.Add(new TraitDetail(this, "RuntimeVersion", assembly.ImageRuntimeVersion));
+            _children.Add(new TraitDetail(this, "FullName", assembly.FullName));
+            _children.Add(new TraitDetail(this, "Version", assembly.GetName().Version.ToString()));
+            _children.Add(new TraitDetail(this, "RuntimeVersion", assembly.ImageRuntimeVersion));
 			_children.Add(new TraitDetail(this, "PublicKeyToken", GenericUtility.GetHashText(assembly.GetName().GetPublicKeyToken())));
 			_children.Add(new TraitDetail(this, "Flags", assembly.GetName().Flags.ToString()));
 
